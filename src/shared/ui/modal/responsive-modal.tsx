@@ -16,41 +16,41 @@ export const ResponsiveModal = ({
   onOpenChange,
 }: ResponsiveModalProps) => {
 
-  const isDesktop = useMedia("(min-width: 1024px)", true)
+  // const isDesktop = useMedia("(min-width: 1024px)", true)
 
-  if (isDesktop) {
-    return (
-      <Dialog
-        open={open}
-        onOpenChange={onOpenChange}
-      >
-        <DialogContent
-          className="w-full sm:max-w-lg p-0 border-none overflow-y-auto hide-scrollbar max-h-[85vh]"
-        >
-          <DialogHeader>
-            <DialogTitle>Dialog Title!</DialogTitle>
-            <DialogDescription>
-              Dialog Description!
-            </DialogDescription>
-          </DialogHeader>
-          {children}
-        </DialogContent>
-      </Dialog>
-    )
-  }
-
+  // if (isDesktop) {
   return (
-    <Drawer
+    <Dialog
       open={open}
       onOpenChange={onOpenChange}
     >
-      <DrawerContent>
-        <div
-          className="overflow-y-auto hide-scrollbar max-h-[85vh]"
-        >
-          {children}
-        </div>
-      </DrawerContent>
-    </Drawer>
+      <DialogContent
+        className="w-full sm:max-w-lg p-0 border-none overflow-y-auto hide-scrollbar max-h-[85vh]"
+      >
+        <DialogHeader>
+          <DialogTitle>Dialog Title!</DialogTitle>
+          <DialogDescription>
+            Dialog Description!
+          </DialogDescription>
+        </DialogHeader>
+        {children}
+      </DialogContent>
+    </Dialog>
   )
+  // }
+
+  // return (
+  //   <Drawer
+  //     open={open}
+  //     onOpenChange={onOpenChange}
+  //   >
+  //     <DrawerContent>
+  //       <div
+  //         className="overflow-y-auto hide-scrollbar max-h-[85vh]"
+  //       >
+  //         {children}
+  //       </div>
+  //     </DrawerContent>
+  //   </Drawer>
+  // )
 }

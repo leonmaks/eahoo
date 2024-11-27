@@ -1,9 +1,7 @@
-
-
 import { ReactNode } from "react"
 
 import { IaeHeader, IaeCtxProvider, IaeSidebar, IaeFooter } from "./_iae"
-import { auth } from "@/features"
+import { auth } from "@/features/auth"
 import { redirect } from "next/navigation"
 import { LOGIN_ROUTE } from "@/shared"
 
@@ -19,10 +17,12 @@ export default async function IaeLayout({
 
   return (
     <IaeCtxProvider>
-      <div className="flex flex-col h-full">
+      <div
+        className="flex flex-col min-h-screen"
+      >
         <IaeHeader />
 
-        <div className="flex h-[calc(100%-5rem)]">
+        <div className="flex h-[calc(100vh-5rem)]">
           <IaeSidebar className="w-16 border-r bg-gray-50 shrink-0" />
 
           {children}

@@ -1,7 +1,7 @@
 import { ReactNode } from "react"
 import type { Metadata } from "next"
 import { NuqsAdapter } from 'nuqs/adapters/next/app'
-import { Inter } from "next/font/google"
+import localFont from "next/font/local"
 
 import { auth } from "@/features/auth"
 import {
@@ -17,7 +17,16 @@ import { Modals } from "./_root/modals"
 
 import "./globals.css"
 
-const inter = Inter({ subsets: ["latin", "cyrillic"] })
+const geistSans = localFont({
+  src: "./fonts/GeistVF.woff",
+  variable: "--font-geist-sans",
+  weight: "100 900",
+})
+const geistMono = localFont({
+  src: "./fonts/GeistMonoVF.woff",
+  variable: "--font-geist-mono",
+  weight: "100 900",
+})
 
 export const metadata: Metadata = {
   title: "EAHoo!",
@@ -38,8 +47,9 @@ export default async function RootLayout({
       <html lang="en">
         <body
           className={cn(
-            "min-h-full antialiased",
-            inter.className
+            "min-h-screen antialiased",
+            geistSans.variable,
+            geistMono.variable,
           )}
         >
           <QueryProvider>

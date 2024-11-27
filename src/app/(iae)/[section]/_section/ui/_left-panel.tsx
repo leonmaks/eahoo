@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useTransition } from "react"
 
-import { ScrollablePanel, Spinner, TreeNode, Tree } from "@/shared"
+import { ScrollablePanel, Spinner, TreeNode, Tree } from "@/shared/ui"
 
 import { getRiHrchy } from "../sa"
 import { NavItemActions } from "./_nav-item-actions.O"

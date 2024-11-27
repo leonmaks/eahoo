@@ -6,7 +6,7 @@ import {
   ResizablePanelGroup
 } from "@/shared/shadcn-ui/resizable"
 
-import { ScrollablePanel } from "@/shared/ui/scrollable-panel"
+import { ScrollablePanel } from "@/shared/ui"
 
 import { LeftPanel } from "./_left-panel"
 

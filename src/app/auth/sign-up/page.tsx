@@ -1,4 +1,4 @@
-import { SignUpCard } from "@/shared/auth"
+import { SignUpCard } from "@/features"
 
 export default function SignInPage() {
 

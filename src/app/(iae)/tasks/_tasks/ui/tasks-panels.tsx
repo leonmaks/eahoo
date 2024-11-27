@@ -10,11 +10,15 @@ import { ScrollablePanel } from "@/shared/ui/scrollable-panel"
 import { TasksSidebar } from "./tasks-sidebar"
 
 type TasksPanelsProps = {
-  children: ReactNode
+  children: ReactNode,
+  wspId?: string,
+  projectId?: string,
 }
 
 export const TasksPanels = async ({
   children,
+  wspId,
+  projectId,
 }: TasksPanelsProps) => {
 
   return (
@@ -33,7 +37,10 @@ export const TasksPanels = async ({
           collapsedSize={0}
           className=""
         >
-          <TasksSidebar />
+          <TasksSidebar
+            wspId={wspId}
+            projectId={projectId}
+          />
         </ResizablePanel>
 
         <ResizableHandle

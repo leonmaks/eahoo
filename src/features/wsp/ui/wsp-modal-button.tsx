@@ -1,6 +1,6 @@
 "use client"
 
-import { RiAddCircleFill } from "react-icons/ri"
+import { CirclePlusIcon } from "lucide-react"
 
 import { useCreateWspModal } from "../hooks"
 
@@ -9,10 +9,12 @@ export const WspModalButton = () => {
 
   return (
     <>
-      <RiAddCircleFill
-        onClick={open}
-        className="size-5 text-neutral-500 cursor-pointer hover:opacity-75 transition"
-      />
+      <div className="size-4 rounded-full cursor-pointer text-neutral-500 hover:text-sky-500">
+        <CirclePlusIcon
+          onClick={open}
+          className="size-4 stroke-[1.5px] hover:stroke-[3px]"
+        />
+      </div>
     </>
   )
 }

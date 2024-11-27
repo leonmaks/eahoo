@@ -1,19 +1,19 @@
 import { UseFormReturn } from "react-hook-form"
 import { ZodSchema } from "zod"
 
-export type FormActionState<T> = {
-  fieldValues?: T
+export type FormActionState = {
+  values?: Record<string, any | undefined>
   fieldErrors?: Record<string, string[] | undefined>
   // fieldErrors?: { [key: keyof T]: string[] | undefined }
-  formErrors?: string[]
+  formError?: string
   success?: boolean
   pathname?: string
 }
 
-export type FormAction<T> = (
-  prevState: FormActionState<T>,
+export type FormAction = (
+  prevState: FormActionState,
   formData: FormData,
-) => Promise<FormActionState<T>>
+) => Promise<FormActionState>
 
 // export type FormActionWrapper = (
 //   prevState: FormActionState,

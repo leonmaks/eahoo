@@ -2,20 +2,37 @@ import { ReactNode } from "react"
 
 import { CreateWspModal } from "@/features"
 
-import { TasksPanels } from "./_tasks"
+import {
+  // TasksCtxProvider,
+  TasksPanels
+} from "./_tasks"
+
+type TasksLayoutProps = {
+  children: ReactNode,
+  params: { wspId?: string, projectId?: string },
+}
 
 export default async function TasksLayout({
-  children
-}: {
-  children: ReactNode
-}) {
+  children,
+  params,
+}: TasksLayoutProps) {
+  const func__ = "TasksLayout"
+
+  const { wspId, projectId } = await params
+
+  console.log(func__, { wspId, projectId })
 
   return (
     <>
       <CreateWspModal />
-      <TasksPanels>
+      {/* <TasksCtxProvider> */}
+      <TasksPanels
+        wspId={wspId}
+        projectId={projectId}
+      >
         {children}
       </TasksPanels>
+      {/* </TasksCtxProvider> */}
     </>
   )
 }

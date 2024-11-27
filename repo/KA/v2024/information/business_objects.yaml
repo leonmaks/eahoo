@@ -1,0 +1,11 @@
+kadzo.v2023.business_objects:
+  sberspasibo.business_objects.bus_object_id_10_curr:
+    processes:
+      - sberspasibo.processes.bp_2
+    status: Используется
+    title: Валюта
+  sberspasibo.business_objects.bus_object_id_11_impress:
+    processes:
+      - sberspasibo.processes.bp_4
+    status: Используется
+    title: Впечатление

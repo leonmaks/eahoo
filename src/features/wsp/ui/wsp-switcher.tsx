@@ -1,3 +1,5 @@
+import { SidebarSectionHeader } from "@/shared"
+
 import {
   findWspsByMember,
 } from "@/entities"
@@ -7,8 +9,12 @@ import { sessionGuard } from "@/features/auth"
 import { WspSelector } from "./wsp-selector.cli"
 import { WspModalButton } from "./wsp-modal-button"
 
-export const WspSwitcher = async () => {
-  const func__ = "WspSwitcher"
+type WspSwitcherProps = {
+}
+
+export const WspSwitcher = async ({
+}: WspSwitcherProps) => {
+  // const func__ = "WspSwitcher"
 
   const session = await sessionGuard()
 
@@ -18,7 +24,7 @@ export const WspSwitcher = async () => {
 
   // TODO: +Order by createdAt desc
 
-  console.log(func__, { wspsByMember })
+  // console.log(func__, { wspsByMember })
 
   const onSelect = (id: string) => {
 
@@ -26,10 +32,14 @@ export const WspSwitcher = async () => {
 
   return (
     <div className="flex flex-col gap-y-2">
-      <div className="flex items-center justify-between">
+      <SidebarSectionHeader
+        title={"Workspaces"}
+        actionButton={WspModalButton}
+      />
+      {/* <div className="flex items-center justify-between">
         <p className="text-xs uppercase text-neutral-500">Workspaces</p>
         <WspModalButton />
-      </div>
+      </div> */}
       <WspSelector wspsByMember={wspsByMember} />
     </div>
   )

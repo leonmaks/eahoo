@@ -3,9 +3,10 @@
 // export type TreeNodeType = Record<string, ReactNode>
 
 export type TreeNode<D> = {
-  key: string
+  key: string // Unique indexing key
   title: string
-  type: string
+  up?: TreeNode<D>
+  type?: string
   data?: D
   link?: string
   children?: TreeNode<D>[]

@@ -10,7 +10,7 @@ import {
 } from "@/shared/shadcn-ui/form"
 import { Button } from "@/shared/shadcn-ui/button"
 // import { Input } from "@/shared/shadcn-ui/input"
-import FormField from "@/shared/ui/dyf/dyf-field"
+import FormField from "@/shared/ui/form/dyna-form/dyna-form-field"
 import { FormFields, formSchema } from "./form-schema"
 
 interface CiFormProps {

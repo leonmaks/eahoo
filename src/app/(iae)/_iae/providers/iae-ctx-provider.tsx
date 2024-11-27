@@ -12,6 +12,12 @@ import {
 export type IaeCtxType = {
   showSidebar: boolean
   setShowSidebar: Dispatch<SetStateAction<boolean>>
+
+  wspId: string | undefined
+  setWspId: Dispatch<SetStateAction<string | undefined>>
+
+  projectId: string | undefined
+  setProjectId: Dispatch<SetStateAction<string | undefined>>
 }
 
 const IaeCtx = createContext<IaeCtxType | null>(null)
@@ -24,17 +30,27 @@ export const useIaeCtx = () => {
   return ctx
 }
 
-export const IaeCtxProvider = (
-  { children }: { children: ReactNode }
-) => {
+export const IaeCtxProvider = ({
+  children
+}: { children: ReactNode }) => {
 
   // TODO: Add condition "Show if logged in"
   const [showSidebar, setShowSidebar] = useState(true)
 
+  const [wspId, setWspId] = useState<string | undefined>()
+  const [projectId, setProjectId] = useState<string | undefined>()
+
   return (
     <IaeCtx.Provider
       value={{
-        showSidebar, setShowSidebar,
+        showSidebar,
+        setShowSidebar,
+
+        wspId,
+        setWspId,
+
+        projectId,
+        setProjectId,
       }}
     >
       {children}

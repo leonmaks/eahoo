@@ -1,0 +1,7 @@
+sber:
+  domains:
+    sberspasibo:
+      title: АО "Центр программ лояльности"
+      version:
+        major: 2024Q4
+        patch: 1

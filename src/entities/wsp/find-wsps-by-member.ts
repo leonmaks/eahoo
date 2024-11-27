@@ -1,6 +1,6 @@
 import { db } from "@/entities"
 
-export const findWspsByMember = (
+export const findWspsByMember = async (
   userId: string,
 ) => (
   db.wspMember.findMany({

@@ -1,0 +1,13 @@
+kadzo.v2023.data_objects:
+  sberspasibo.data_objects.data_obj_id_1:
+    business_object: sberspasibo.business_objects.bus_object_id_10_curr
+    category: Перс данные
+    master_system: sberspasibo.systems.sys_02
+    status: Используется
+    title: Информация о компании партнере
+  sberspasibo.data_objects.data_obj_id_10:
+    business_object: sberspasibo.business_objects.bus_object_id_11_impress
+    category: Перс данные
+    master_system: sberspasibo.systems.sys_04
+    status: Используется
+    title: Авторизационная информация

@@ -103,4 +103,5 @@ export default {
   // ],
   basePath: AUTH_BASE_PATH,
   secret: NEXTAUTH_SECRET,
+
 } satisfies NextAuthConfig

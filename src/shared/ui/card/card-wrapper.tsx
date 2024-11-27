@@ -2,13 +2,15 @@ import {
   ReactNode,
 } from "react"
 
-import {
-  DottedSeparator,
-} from "@/shared"
+// import {
+//   DottedSeparator,
+// } from "@/shared"
 
 import {
   Card,
   CardContent,
+  CardDescription,
+  CardFooter,
   CardHeader,
   CardTitle
 } from "@/shared/shadcn-ui/card"
@@ -16,38 +18,50 @@ import {
 // import { SessionLoadingSpinner } from "@/shared/ui/session"
 
 type CardWrapperProps = {
+  title: string
+  description?: string
   children: ReactNode
-  cardTitle: string
+  footer?: ReactNode
 }
 
 export const CardWrapper = ({
+  title,
+  description,
   children,
-  cardTitle,
+  footer,
 }: CardWrapperProps) => {
   // const func__ = "CardWrapper"
 
   return (
     // <SessionLoadingSpinner>
-    <Card
-      className="w-full h-full border-none shadow-none"
-    >
-      <CardHeader
-        className="flex p-7"
-      >
-        <CardTitle
-          className="text-xl font-bold"
-        >
-          {cardTitle}
+    <Card className="w-full max-w-md">
+      <CardHeader className="">
+        <CardTitle className="text-2xl font-bold text-center">
+          {title}
         </CardTitle>
+
+        {description && (
+          <CardDescription className="text-center">
+            {description}
+          </CardDescription>
+        )}
       </CardHeader>
 
-      <div className="px-7">
+      {/* <div className="px-7">
         <DottedSeparator />
-      </div>
+      </div> */}
 
-      <CardContent className="p-7">
+      <CardContent className="">
         {children}
       </CardContent>
+
+      {footer && (
+        <CardFooter
+          className="flex justify-center"
+        >
+          {footer}
+        </CardFooter>
+      )}
     </Card>
     // </SessionLoadingSpinner>
   )

@@ -1,10 +1,15 @@
-import NextAuth, { type DefaultSession } from "next-auth"
+import NextAuth, { User, type DefaultSession } from "next-auth"
+import Credentials from "next-auth/providers/credentials"
 import { PrismaAdapter } from "@auth/prisma-adapter"
+import bcrypt from "bcryptjs"
+
 import { UserRole } from "@prisma/client"
 
-import authConfig from "@/features/auth/auth.config"
 import { db } from "@/entities/db"
 import { findUserByEmail } from "@/entities"
+
+import authConfig from "@/features/auth/auth.config"
+import { loginSchema } from "./schema"
 
 declare module "next-auth" {
   /**
@@ -25,12 +30,61 @@ declare module "next-auth" {
     } & DefaultSession["user"]
   }
 }
+
+const { providers, ...others } = authConfig
+
+
 export const {
   handlers,
   auth,
   signIn,
   signOut,
 } = NextAuth({
+  providers: [
+
+    Credentials({
+      async authorize(credentials) {
+
+        const validatedFields = loginSchema.safeParse(credentials)
+
+        if (validatedFields.success) {
+          const { email, password } = validatedFields.data
+
+          const user = await findUserByEmail(email)
+          if (user?.password &&
+            await bcrypt.compare(password, user.password)) {
+
+            return user as User
+          }
+        }
+        return null
+      }
+    }),
+
+    // Credentials({
+    //   name: "Credentials",
+    //   credentials: {
+    //     username: { label: "Username", type: "text", placeholder: "jsmith" },
+    //     password: { label: "Password", type: "password" },
+    //   },
+
+    //   async authorize(credentials): Promise<User | null> {
+    //     const users = [
+    //       { id: "u1", userName: "u1", name: "User 1", password: "u__", email: "u1@donotreply.com" },
+    //       { id: "u2", userName: "u2", name: "User 2", password: "u__", email: "u2@donotreply.com" },
+    //     ]
+
+    //     const user = users.find(
+    //       user => (
+    //         user.userName === credentials.username &&
+    //         user.password === credentials.password
+    //       )
+    //     )
+    //     return user ? { id: user.id, name: user.name, email: user.email } : null
+    //   }
+    // }),
+    ...providers,
+  ],
   callbacks: {
     async session({ session }) {
       // const func__ = "auth.session"
@@ -74,5 +128,5 @@ export const {
   },
   adapter: PrismaAdapter(db),
   session: { strategy: "jwt" },
-  ...authConfig,
+  ...others,
 })

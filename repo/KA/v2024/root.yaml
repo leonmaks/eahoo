@@ -1,0 +1,6 @@
+imports:
+  - information/business_objects.yaml
+  - information/data_objects.yaml
+  - application/groups.yaml
+  - version.yaml
+  - ka.yaml

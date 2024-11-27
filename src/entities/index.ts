@@ -5,5 +5,6 @@ export * from "./mi"
 export * from "./repo"
 export * from "./wsp"
 export * from "./wsp-member"
+export * from "./project"
 
 export * from "./ri-hrchy"

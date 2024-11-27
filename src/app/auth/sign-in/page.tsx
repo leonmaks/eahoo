@@ -1,8 +1,8 @@
-import { SignInCard } from "@/features/auth"
+import { SignInForm } from "@/features/auth"
 
 export default function SignInPage() {
 
   return <>
-    <SignInCard />
+    <SignInForm />
   </>
 }

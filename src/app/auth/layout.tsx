@@ -7,8 +7,13 @@ export default function AuthLayout({
 }) {
 
   return <>
-    <div className="flex flex-col items-center justify-center md:pt-8">
+    <main className="flex items-center justify-center min-h-screen bg-background">
+      {/* <div className="container py-6"> */}
+      {/* <div className="overflow-hidden rounded-[0.5rem] border bg-background shadow"> */}
+      {/* <div className="flex flex-col items-center justify-center md:pt-8"> */}
       {children}
-    </div>
+      {/* </div> */}
+      {/* </div> */}
+    </main>
   </>
 }

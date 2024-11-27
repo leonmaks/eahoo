@@ -295,12 +295,17 @@ model WspMember {
 
 // Project
 model Project {
-  id       String  @id @default(cuid())
-  wspId    String
-  name     String
-  imageUrl String?
+  id    String  @id @default(cuid())
+  wspId String  @map("wsp_id")
+  name  String
+  image String?
 
   wsp Wsp @relation(fields: [wspId], references: [id], onDelete: Cascade, onUpdate: Cascade)
 
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@unique([name, wspId])
+  @@index([name, wspId])
   @@map("projects")
 }

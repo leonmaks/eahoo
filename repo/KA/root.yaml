@@ -1,0 +1,6 @@
+imports:
+  - v2024/root.yaml
+sber:
+  domain: sberspasibo
+  kadzo:
+    menu_root: Документы/Сбер/КА ДЗО/2024

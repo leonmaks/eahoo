@@ -14,7 +14,7 @@ import {
   // FormControl, FormField, FormItem, FormLabel, FormMessage
 } from "@/shared/shadcn-ui/form"
 
-import FormField from "@/shared/ui/dyf/dyf-field"
+import FormField from "@/shared/ui/form/dyna-form/dyna-form-field"
 
 interface RepoItemFormProps {
   ri: RepoItem_T,

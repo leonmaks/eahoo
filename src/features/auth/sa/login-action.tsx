@@ -14,16 +14,16 @@ export const loginAction = async (
   _prevState: unknown,
   data: FormData,
 ) => {
-  // const func__ = "loginAction"
+  const func__ = "loginAction"
 
   const formData = Object.fromEntries(data)
 
-  // console.log(func__, { prevState, formData })
+  console.log(func__, { formData })
   // await sleep(3000)
   // 
   const validatedFields = loginSchema.safeParse(formData)
 
-  // console.log(func__, { formData, validatedFields: JSON.stringify(validatedFields, null, 2) })
+  console.log(func__, { formData, validatedFields: JSON.stringify(validatedFields, null, 2) })
 
   if (!validatedFields.success) {
     // state.errors = validatedFields.error.flatten().fieldErrors

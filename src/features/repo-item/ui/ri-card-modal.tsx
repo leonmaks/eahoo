@@ -18,7 +18,7 @@ import {
   DialogTitle,
 } from "@/shared/shadcn-ui/dialog"
 import { getMiChildren } from "@/features/mi/sa"
-import { Spinner } from "@/shared"
+import { Spinner } from "@/shared/ui"
 import { Form, FormControl, FormField, FormItem, FormMessage } from "@/shared/shadcn-ui/form"
 
 export const RiCardModal = () => {

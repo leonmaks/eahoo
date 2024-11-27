@@ -6,7 +6,7 @@ import { RepoItem_T } from "../types"
 import { getRiFields } from "../sa/get-ri-fields"
 import { riFormAction } from "../sa/riFormAction"
 
-import { DynaForm } from "@/shared/ui/dyf/dyf"
+import { DynaForm } from "@/shared/ui/form/dyna-form/dyna-form"
 // import { RepoItemFooter } from "./RepoItemFooter"
 
 export const RepoItemCard = async ({ ri }: { ri: RepoItem_T }) => {
