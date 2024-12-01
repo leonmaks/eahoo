@@ -33,6 +33,7 @@ export type DynaFormMode = "create" | "update"
 export type DynaFormFieldDef = {
   // id: string
   fieldTypeId: string
+  label?: string
   name: string
   // isUK?: boolean | null
   isNotNull?: boolean | null

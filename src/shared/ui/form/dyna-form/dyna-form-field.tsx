@@ -25,16 +25,20 @@ export const DynaFormField = <
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
 >({
   control,
+  label,
   name,
   fieldTypeId = DynaFormFieldText,
   editable = true,
   state,
+  isPending = false
 }: {
   control: Control<TFieldValues, any>,
+  label?: string
   name: TName,
   fieldTypeId?: string
   editable?: boolean,
   state?: FormActionState,
+  isPending?: boolean,
 }) => {
 
   let fieldError = (
@@ -49,7 +53,9 @@ export const DynaFormField = <
         <FormItem>
           {/* <FormItem className="flex flex-col"> */}
 
-          <FormLabel>{field.name}</FormLabel>
+          {label && (
+            <FormLabel>{label}</FormLabel>
+          )}
 
           {fieldTypeId === DynaFormFieldLov ? (
 
@@ -64,7 +70,7 @@ export const DynaFormField = <
               ) ? (
                 <Input
                   {...field}
-                  disabled={!editable}
+                  disabled={!editable || isPending}
                   placeholder={field.name}
                   type={
                     fieldTypeId === DynaFormFieldPassword ?

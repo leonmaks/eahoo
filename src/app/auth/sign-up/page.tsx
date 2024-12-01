@@ -1,8 +1,8 @@
-import { SignUpCard } from "@/features"
+import { SignUpForm } from "@/features/auth"
 
-export default function SignInPage() {
+export default function SignUpPage() {
 
   return <>
-    <SignUpCard />
+    <SignUpForm />
   </>
 }

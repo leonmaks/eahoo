@@ -1,8 +1,8 @@
-// "use client"
+"use client"
 
 import { useState } from "react"
 import { isEmpty } from "lodash-es"
-import { usePathname, useRouter } from "next/navigation"
+// import { usePathname, useRouter } from "next/navigation"
 import {
   ChevronRightIcon,
   DotIcon,
@@ -30,9 +30,9 @@ import { Button } from "@/shared/shadcn-ui/button"
 import { TreeNodeIcon } from "./tree-node-icon"
 import { TreeNodeRender } from "./tree-node-render"
 
-// 
+//
 // Tree
-// 
+//
 
 type TreeProps<D> = {
   treeNodes: TreeNode<D>[]

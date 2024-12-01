@@ -5,28 +5,29 @@ import {
   DynaFormFieldText,
 } from "@/shared/ui"
 
-import { loginAction } from "../sa"
+import { registerAction } from "../sa"
 import { AuthFormLayout } from "../ui"
 
-export const SignInForm = () => {
+export const SignUpForm = () => {
 
   return (
     <AuthFormLayout
-      title="Sign In"
+      title="Sign Up"
       description={
-        "Welcome back! Please sign in to your account"
+        "Create your account to get started!"
       }
       fields={[
+        { name: "name", label: "Name", fieldTypeId: DynaFormFieldText },
         { name: "email", label: "Email", fieldTypeId: DynaFormFieldText },
         { name: "password", label: "Password", fieldTypeId: DynaFormFieldPassword },
       ]}
-      submit="Sign In"
-      formAction={loginAction}
+      submit="Sign Up"
+      formAction={registerAction}
       footer={
         <p className="text-sm text-muted-foreground">
-          Don&apos;t have an account?&nbsp;
-          <Link href="/auth/sign-up">
-            <span className="text-blue-700">Sign Up</span>
+          Already have an account?&nbsp;
+          <Link href="/auth/sign-in">
+            <span className="text-blue-700">Sign In</span>
           </Link>
         </p>
       }

@@ -1,13 +1,15 @@
-import { User, type NextAuthConfig } from "next-auth"
-import bcrypt from "bcryptjs"
+import {
+  // User,
+  type NextAuthConfig
+} from "next-auth"
 // import { compact } from "lodash-es"
-import Credentials from "next-auth/providers/credentials"
+// import Credentials from "next-auth/providers/credentials"
 import GitHub from "next-auth/providers/github"
 import Google from "next-auth/providers/google"
 
 // import { privateConfig } from "../config"
-import { loginSchema } from "@/features/auth/schema"
-import { findUserByEmail } from "@/entities"
+// import { loginSchema } from "@/features/auth/schema"
+// import { findUserByEmail } from "@/entities"
 import {
   GITHUB_CLIENT_ID,
   GITHUB_CLIENT_SECRET,

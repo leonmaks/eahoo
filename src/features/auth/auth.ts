@@ -1,15 +1,16 @@
 import NextAuth, { User, type DefaultSession } from "next-auth"
 import Credentials from "next-auth/providers/credentials"
 import { PrismaAdapter } from "@auth/prisma-adapter"
-import bcrypt from "bcryptjs"
 
 import { UserRole } from "@prisma/client"
 
 import { db } from "@/entities/db"
-import { findUserByEmail } from "@/entities"
+import { findUserWithEmail } from "@/entities"
 
 import authConfig from "@/features/auth/auth.config"
+
 import { loginSchema } from "./schema"
+import { passwordCompare } from "./password"
 
 declare module "next-auth" {
   /**
@@ -50,9 +51,9 @@ export const {
         if (validatedFields.success) {
           const { email, password } = validatedFields.data
 
-          const user = await findUserByEmail(email)
-          if (user?.password &&
-            await bcrypt.compare(password, user.password)) {
+          const user = await findUserWithEmail(email)
+          if (user?.password && user?.salt &&
+            await passwordCompare(password, user.password, user.salt)) {
 
             return user as User
           }
@@ -99,7 +100,7 @@ export const {
         (!session.user.id || !session.user.role) &&
         session.user?.email
       ) {
-        const existingUser = await findUserByEmail(session.user.email)
+        const existingUser = await findUserWithEmail(session.user.email)
 
         // console.log(func__, { existingUser })
 
@@ -116,7 +117,7 @@ export const {
     // async jwt({ token }) {
     //   const func__ = "jwt"
     //   if (token.email) {
-    //     const existingUser = await findUserByEmail(token.email)
+    //     const existingUser = await findUserWithEmail(token.email)
     //     if (existingUser) {
     //       token.id =
     //         token.role = existingUser.role

@@ -1,43 +1,45 @@
 "use server"
 
+import { redirect } from "next/navigation"
+import { AuthError } from "next-auth"
 // import { z } from "zod"
 
-import { loginSchema, LoginSchemaType } from "../schema"
-// import { sleep } from "@/shared/utils"
+import { LOGIN_REDIRECT } from "@/shared"
+import { sleep } from "@/shared/utils"
+import { formError, formSuccess } from "@/shared/ui"
+
+import { signIn } from "../auth"
+import {
+  loginSchema,
+  // LoginSchemaType
+} from "../schema"
 // import { NextResponse } from "next/server"
 // import { FormAction, FormActionState } from "@/shared/ui/form"
-import { signIn } from "../auth"
-import { LOGIN_REDIRECT } from "@/shared"
-import { AuthError } from "next-auth"
 
 export const loginAction = async (
   _prevState: unknown,
   data: FormData,
 ) => {
-  const func__ = "loginAction"
+  // const func__ = "loginAction"
 
   const formData = Object.fromEntries(data)
 
-  console.log(func__, { formData })
-  // await sleep(3000)
-  // 
+  // console.log(func__, { formData })
+  await sleep(3000)
+  //
   const validatedFields = loginSchema.safeParse(formData)
 
-  console.log(func__, { formData, validatedFields: JSON.stringify(validatedFields, null, 2) })
+  // console.log(func__, { formData, validatedFields: JSON.stringify(validatedFields, null, 2) })
 
   if (!validatedFields.success) {
-    // state.errors = validatedFields.error.flatten().fieldErrors
-    return {
-      fieldErrors: validatedFields.error.flatten().fieldErrors,
-      formError: "Invalid credentials",
-    }
+    return formError("Invalid credentials", validatedFields.error.flatten().fieldErrors)
   }
 
   const { email, password } = validatedFields.data
 
   try {
-    const result = await signIn("credentials", {
-      email, password, redirectTo: LOGIN_REDIRECT
+    await signIn("credentials", {
+      email, password, redirect: false
     })
     // console.log(func__, { result })
 
@@ -48,13 +50,18 @@ export const loginAction = async (
     if (error instanceof AuthError) {
       switch (error.type) {
         case "CredentialsSignin":
-          return { formError: "Invalid Credentials" }
+          return formError("Invalid Credentials")
         default:
-          return { formError: "Internal Server Error" }
+          return formError("Internal Server Error")
       }
     }
-    throw error
+
+    console.error(error)
+
+    return formError(error.message)
   }
 
-  return {}
+  redirect(LOGIN_REDIRECT)
+
+  // return formSuccess()
 }

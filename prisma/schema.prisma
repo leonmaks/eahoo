@@ -15,9 +15,9 @@ datasource db {
   directUrl = env("DATABASE_URL_NON_POOLING")
 }
 
-// 
+//
 // AUTH
-// 
+//
 
 // User Role
 enum UserRole {
@@ -26,13 +26,14 @@ enum UserRole {
 }
 
 // User
-// 
+//
 model User {
   id            String    @id @default(cuid())
   name          String?
   email         String    @unique
   emailVerified DateTime? @map("email_verified")
   password      String?
+  salt          String?
   role          UserRole  @default(User)
   image         String?
 
@@ -48,7 +49,7 @@ model User {
 }
 
 // Account
-// 
+//
 model Account {
   userId            String  @map("user_id")
   type              String
@@ -72,7 +73,7 @@ model Account {
 }
 
 // Session
-// 
+//
 model Session {
   sessionToken String   @unique @map("session_token")
   userId       String   @map("user_id")
@@ -87,7 +88,7 @@ model Session {
 }
 
 // Verification Token
-// 
+//
 model VerificationToken {
   identifier String
   token      String
@@ -97,12 +98,12 @@ model VerificationToken {
   @@map("verification_tokens")
 }
 
-// 
+//
 // META
-// 
+//
 
 // MI Type
-// 
+//
 model MiType {
   id          String  @id
   name        String  @unique
@@ -114,7 +115,7 @@ model MiType {
 }
 
 // Meta Item (MI)
-// 
+//
 model MetaItem {
   id          String  @id
   miTypeId    String  @map("mi_type_id")
@@ -132,7 +133,7 @@ model MetaItem {
 }
 
 // MI Link Type
-// 
+//
 model MiLinkType {
   id          String  @id
   name        String  @unique
@@ -144,7 +145,7 @@ model MiLinkType {
 }
 
 // MI Link
-// 
+//
 model MiLink {
   id           String @id
   miLinkTypeId String @map("mi_link_type_id")
@@ -160,9 +161,9 @@ model MiLink {
   @@map("mi_links")
 }
 
-// 
+//
 // REPO
-// 
+//
 
 // Repo Item
 //
@@ -177,7 +178,7 @@ model RepoItem {
 }
 
 // RI Link
-// 
+//
 model RiLink {
   id       String @id @default(cuid())
   miLinkId String @map("mi_link_id")
@@ -213,7 +214,7 @@ model RiVer {
 }
 
 // MI Attribute Type
-// 
+//
 model MiAttrType {
   id          String  @id
   name        String  @unique
@@ -245,9 +246,9 @@ model MiAttr {
   @@map("mi_attrs")
 }
 
-// 
+//
 // Tasks
-// 
+//
 
 // Workspace
 model Wsp {

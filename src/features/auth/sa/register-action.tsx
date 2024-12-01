@@ -1,12 +1,13 @@
 "use server"
 
-import bcrypt from "bcryptjs"
-
-import { registerSchema, RegisterSchemaType } from "../schema"
-import { createUser, findUserByEmail } from "@/entities"
+import { registerSchema } from "../schema"
+import { createUser, findUserWithEmail } from "@/entities"
+import { formError, formSuccess } from "@/shared/ui"
+import { sleep } from "@/shared"
+import { passwordHash } from "../password"
 
 export const registerAction = async (
-  prevState: unknown,
+  _prevState: unknown,
   data: FormData,
 ) => {
   const func__ = "registerAction"
@@ -14,32 +15,31 @@ export const registerAction = async (
   const formData = Object.fromEntries(data)
 
   // console.log(func__, { prevState, formData })
-  // await sleep(3000)
-  // 
-  const parse = registerSchema.safeParse(formData)
+  await sleep(3000)
+  //
+  const validatedFields = registerSchema.safeParse(formData)
 
   // console.log(func__, { formData, parse: JSON.stringify(parse, null, 2) })
 
-  if (!parse.success) {
-    // state.errors = parse.error.flatten().fieldErrors
-    return {
-      fieldErrors: parse.error.flatten().fieldErrors,
-      formError: "Invalid credentials",
-    }
+  if (!validatedFields.success) {
+    return formError("Invalid credentials", validatedFields.error.flatten().fieldErrors)
   }
 
-  const { name, email, password } = parse.data
+  const { name, email, password } = validatedFields.data
 
-  console.log(func__, { name, email, password })
-
-  const existingUser = await findUserByEmail(email)
-  if (existingUser) {
-    return { formError: "Email already in use" }
+  const userWithEmail = await findUserWithEmail(email)
+  if (userWithEmail) {
+    return formError("Email already in use")
   }
 
-  const hashedPassword = await bcrypt.hash(password, 10)
+  const { hash, salt } = await passwordHash(password)
 
-  await createUser(name, email, hashedPassword)
+  const user = await createUser({
+    name,
+    email,
+    password: hash,
+    salt,
+  })
 
-  return { success: true, message: "User created" }
+  return formSuccess("User created successfully", user)
 }

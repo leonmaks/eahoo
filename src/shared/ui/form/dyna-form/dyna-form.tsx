@@ -3,7 +3,7 @@
 import {
   ReactNode,
   useActionState,
-  // useEffect,
+  useEffect,
   // useRef
 } from "react"
 // import { usePathname } from "next/navigation"
@@ -27,7 +27,8 @@ import { dynaFormDefaultValues } from "./dyna-form-default-values"
 import { dynaFormZSchema } from "./dyna-form-z-schema"
 import { DynaFormField } from "./dyna-form-field"
 import { SubmitButton } from "../../button"
-import { FormAction } from ".."
+import { FormActionState, FormValues } from ".."
+import { AlertMessage, toastMessage } from "../../alert"
 
 // type DynaFormState = "new" | "valid" | "invalid"
 
@@ -37,7 +38,10 @@ interface DynaFormProps {
   fields: DynaFormFieldDef[]
   // fieldValues: string
   // mode: DynaFormMode
-  formAction: FormAction
+  formAction: (
+    prevState: FormValues | undefined,
+    formData: FormData
+  ) => Promise<FormActionState>
   submit?: ReactNode | string
 }
 
@@ -84,30 +88,24 @@ export const DynaForm = ({
     state,
     action,
     isPending
-  ] = useActionState(formAction, initialState)
+  ] = useActionState(formAction, undefined)
 
   console.log(func__, "actionState", { state })
 
-  // useEffect(() => {
-  //   // console.log(func__, "useEffect")
+  useEffect(() => {
+    //   // console.log(func__, "useEffect")
 
-  //   form.reset()
+    //   form.reset()
 
-  //   if (state?.values) {
-  //     for (const [f, v] of Object.entries(state.values)) {
-  //       form.setValue(f, v)
-  //     }
-  //   }
+    //   if (state?.values) {
+    //     for (const [f, v] of Object.entries(state.values)) {
+    //       form.setValue(f, v)
+    //     }
+    //   }
 
-  //   if (state?.errors) {
-  //     for (const [f, errs] of Object.entries(state.errors)) {
-  //       errs?.forEach(message => {
-  //         form.setError(f, { message })
-  //         toast.error(`${f}: ${message}`)
-  //       })
-  //     }
-  //   }
-  // }, [state])
+    toastMessage(state)
+
+  }, [state])
 
   // const { setError } = form
 
@@ -141,21 +139,19 @@ export const DynaForm = ({
           <DynaFormField
             key={f.name}
             control={form.control}
+            label={f.label}
             name={f.name}
             fieldTypeId={f.fieldTypeId}
             editable={f.isEditable === false ? false : true}
             state={state}
+            isPending={isPending}
           />
         ))}
 
-        {state.formError && state.formError.length && (
-          <FormMessage>
-            {state.formError}
-          </FormMessage>
-        )}
+        <AlertMessage state={state} />
 
         <SubmitButton
-          disabled={isSubmitting || !isValid}
+          disabled={isSubmitting || !isValid || isPending}
         >
           {submit ? submit : "Submit"}
         </SubmitButton>

@@ -1,16 +1,8 @@
-import { db } from "@/entities"
+import { Prisma } from "@prisma/client"
+import { db } from "../db"
 
 export const createUser = async (
-  name: string,
-  email: string,
-  password: string,
-) => {
-  const user = await db.user.create({
-    data: {
-      name,
-      email,
-      password,
-    }
-  })
-  return user
-}
+  data: Prisma.UserCreateInput,
+) => (
+  db.user.create({ data })
+)
