@@ -1,8 +1,14 @@
 "use client"
 
+import StarterKit from "@tiptap/starter-kit"
 import { useEditor, EditorContent } from "@tiptap/react"
 // import Image from "@tiptap/extension-image"
 import ImageResize from "tiptap-extension-resize-image"
+import FontFamily from "@tiptap/extension-font-family"
+import TextStyle from "@tiptap/extension-text-style"
+import TextAlign from '@tiptap/extension-text-align'
+import { Color } from "@tiptap/extension-color"
+import Highlight from "@tiptap/extension-highlight"
 import Underline from "@tiptap/extension-underline"
 import Table from "@tiptap/extension-table"
 import TableCell from "@tiptap/extension-table-cell"
@@ -10,9 +16,13 @@ import TableHeader from "@tiptap/extension-table-header"
 import TableRow from "@tiptap/extension-table-row"
 import TaskItem from "@tiptap/extension-task-item"
 import TaskList from "@tiptap/extension-task-list"
-import StarterKit from "@tiptap/starter-kit"
+import Link from "@tiptap/extension-link"
 
 import { useEditorStore } from "./use-editor-store"
+import { FontSizeExtension } from "./font-size-extension"
+import { LineHeightExtension } from "./line-height-extension"
+import { Ruler } from "./Ruler"
+
 
 
 export const Editor = () => {
@@ -37,6 +47,17 @@ export const Editor = () => {
     },
     extensions: [
       StarterKit,
+      FontSizeExtension,
+      LineHeightExtension,
+      FontFamily,
+      TextStyle,
+      TextAlign.configure({
+        types: ["heading", "paragraph"],
+      }),
+      Color,
+      Highlight.configure({
+        multicolor: true,
+      }),
       Underline,
       // Image,
       ImageResize,
@@ -46,6 +67,11 @@ export const Editor = () => {
       TableCell,
       TaskItem.configure({
         nested: true,
+      }),
+      Link.configure({
+        openOnClick: false,
+        autolink: true,
+        defaultProtocol: "https",
       }),
       TaskList,
     ],
@@ -71,6 +97,7 @@ export const Editor = () => {
 
   return (
     <div className="size-full overflow-x-auto bg-[#f9fbfd] px-4 print:p-0 print:bg-white print:overflow-visible">
+      <Ruler />
       <div className="min-w-max flex justify-center w-[816px] py-4 print:py-0 mx-auto print:w-full print:min-w-0">
         <EditorContent editor={editor} />
       </div>
