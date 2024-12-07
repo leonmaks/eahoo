@@ -16,7 +16,7 @@ import { ImageIcon } from "lucide-react"
 
 import { Project } from "@prisma/client"
 
-import { DottedSeparator, TASKS_HOME } from "@/shared"
+import { TASKS_HOME } from "@/shared"
 
 import { cn } from "@/shared/shadcn-ui/utils"
 import { Input } from "@/shared/shadcn-ui/input"
@@ -41,6 +41,7 @@ import {
 } from "../schema"
 import { Label } from "@/shared/shadcn-ui/label"
 import { createProjectFormAction } from "../sa/create-project-form-action"
+import { DottedSeparator } from "@/shared/ui"
 // import { createProjectFormAction } from "../sa"
 // import { divide } from "lodash-es"
 
@@ -74,34 +75,34 @@ export const CreateProjectForm = ({
     defaultValues
   })
 
-  const [
-    state,
-    action,
-    isPending
-  ] = useActionState(
-    createProjectFormAction,
-    { values: defaultValues }
-  )
+  // const [
+  //   state,
+  //   action,
+  //   isPending
+  // ] = useActionState(
+  //   createProjectFormAction,
+  //   { values: defaultValues }
+  // )
 
-  useEffect(() => {
+  // useEffect(() => {
 
-    if (state.success) {
-      toast.success(
-        `Project '${state.values?.name ?? "?"}' created`
-      )
-      form.reset()
+  //   if (state.success) {
+  //     toast.success(
+  //       `Project '${state.values?.name ?? "?"}' created`
+  //     )
+  //     form.reset()
 
-      const project = state.values as Project
-      router.push(
-        `${TASKS_HOME}/wsp/${wspId}/project/${project.id}`
-      )
-    }
+  //     const project = state.values as Project
+  //     router.push(
+  //       `${TASKS_HOME}/wsp/${wspId}/project/${project.id}`
+  //     )
+  //   }
 
-    state.formErrors?.forEach(error => {
-      toast.error(error)
-    })
+  //   state.formErrors?.forEach(error => {
+  //     toast.error(error)
+  //   })
 
-  }, [state])
+  // }, [state])
 
 
 
@@ -124,7 +125,7 @@ export const CreateProjectForm = ({
   return (
     <Form {...form}>
       <form
-        action={action}
+        // action={action}
       >
         <div className="flex flex-col gap-y-4">
 
@@ -145,10 +146,10 @@ export const CreateProjectForm = ({
                   />
                 </FormControl>
 
-                {
+                {/* {
                   state?.fieldErrors?.name &&
                   <FormMessage>{state?.fieldErrors?.name}</FormMessage>
-                }
+                } */}
               </FormItem>
             )}
           />
@@ -231,10 +232,10 @@ export const CreateProjectForm = ({
             )}
           />
 
-          {
+          {/* {
             state?.formErrors &&
             <FormMessage>{state.formErrors}</FormMessage>
-          }
+          } */}
         </div>
 
         <DottedSeparator className="py-7" />

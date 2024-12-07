@@ -1,12 +1,12 @@
 import { ReactNode } from "react"
 import type { Metadata } from "next"
-import { NuqsAdapter } from 'nuqs/adapters/next/app'
+// import { NuqsAdapter } from 'nuqs/adapters/next/app'
 import localFont from "next/font/local"
 
 import { auth } from "@/features/auth"
 import {
   AppSessionProvider,
-  JotaiProvider,
+  // JotaiProvider,
   QueryProvider
 } from "@/features/providers"
 
@@ -53,19 +53,19 @@ export default async function RootLayout({
           )}
         >
           <QueryProvider>
-            <JotaiProvider>
+            {/* <JotaiProvider> */}
 
-              <NuqsAdapter>
-                {children}
-              </NuqsAdapter>
+            {/* <NuqsAdapter> */}
+            {children}
+            {/* </NuqsAdapter> */}
 
-              <Modals />
-              <Toaster
-                position="top-right"
-                richColors
-              />
+            <Modals />
+            <Toaster
+              position="top-right"
+              richColors
+            />
 
-            </JotaiProvider>
+            {/* </JotaiProvider> */}
           </QueryProvider>
         </body>
       </html>

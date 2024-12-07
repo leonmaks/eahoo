@@ -5,10 +5,10 @@ import Link from "next/link"
 
 import { cn } from "@/shared/shadcn-ui/utils"
 
-import {
-  ImageAvatar,
-  SidebarSectionHeader
-} from "@/shared"
+// import {
+//   ImageAvatar,
+//   SidebarSectionHeader
+// } from "@/shared"
 
 import { findProjectsByWsp } from "@/features"
 
@@ -47,10 +47,10 @@ export const Projects = ({
 
   return (
     <div className="flex flex-col">
-      <SidebarSectionHeader
+      {/* <SidebarSectionHeader
         title={"Projects"}
       // actionButton={WspModalButton}
-      />
+      /> */}
       {/* <div className="flex items-center justify-between">
         <p className="text-xs uppercase text-neutral-500">Workspaces</p>
         <WspModalButton />
@@ -71,12 +71,12 @@ export const Projects = ({
                 "flex items-center gap-2 p-2 rounded-md hover:opacity-75 transition cursor-pointer text-neutral-500",
                 isActive && "bg-white shadow-sm hover:opacity-100 text-primary"
               )}>
-                <ImageAvatar
+                {/* <ImageAvatar
                   image={project.image ?? undefined}
                   name={project.name}
                   className="size-5"
                   fallbackClassName="text-sm"
-                />
+                /> */}
                 <span
                   className="truncate"
                 >

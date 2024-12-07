@@ -18,7 +18,7 @@ import {
 } from "@/shared/shadcn-ui/select"
 
 import {
-  ImageAvatar,
+  // ImageAvatar,
   TASKS_HOME
 } from "@/shared"
 
@@ -79,7 +79,7 @@ export const WspSelector = ({
         {wspsByMember.map(m => (
           <SelectItem key={m.id} value={m.wsp.id}>
             <div className="flex items-center gap-3 font-medium">
-              <ImageAvatar name={m.wsp.name} image={m.wsp.image || undefined} />
+              {/* <ImageAvatar name={m.wsp.name} image={m.wsp.image || undefined} /> */}
               <span className="truncate">{m.wsp.name} ({m.role})</span>
             </div>
           </SelectItem>

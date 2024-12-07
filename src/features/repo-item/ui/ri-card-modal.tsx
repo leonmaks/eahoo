@@ -6,7 +6,7 @@ import { toast } from "sonner"
 // import { useCreateChannel } from "../api/useCreateChannel"
 // import { useCreateChannelModal } from "../store/useCreateChannelModal"
 
-import { useRiCardModal } from ".."
+// import { useRiCardModal } from ".."
 
 import { Input } from "@/shared/shadcn-ui/input"
 import { Button } from "@/shared/shadcn-ui/button"
@@ -30,25 +30,25 @@ export const RiCardModal = () => {
   const [isPending, startTransition] = useTransition()
 
   // const { mutate, isPending } = useCreateChannel()
-  const {
-    modalOpen: [open, setOpen],
-    modalContent: [content, setContent],
-  } = useRiCardModal()
+  // const {
+  //   modalOpen: [open, setOpen],
+  //   modalContent: [content, setContent],
+  // } = useRiCardModal()
 
-  useEffect(() => {
-    const init = () => {
-      startTransition(async () => {
+  // useEffect(() => {
+  //   const init = () => {
+  //     startTransition(async () => {
 
-        // await new Promise(resolve => setTimeout(resolve, 3000))
+  //       // await new Promise(resolve => setTimeout(resolve, 3000))
 
-        if (content && content.mi_id) {
-          const childMiList = await getMiChildren(content.mi_id)
-          console.log(func__, { childMiList })
-        }
-      })
-    }
-    init()
-  }, [content])
+  //       if (content && content.mi_id) {
+  //         const childMiList = await getMiChildren(content.mi_id)
+  //         console.log(func__, { childMiList })
+  //       }
+  //     })
+  //   }
+  //   init()
+  // }, [content])
 
   // const [name, setName] = useState("")
 
@@ -71,81 +71,86 @@ export const RiCardModal = () => {
 
   const handleClose = () => {
     //   setName("")
-    setOpen(false)
+    // setOpen(false)
   }
 
   if (isPending) return <Spinner />
 
   return (
-    <Dialog
-      open={open}
-      onOpenChange={handleClose}
-    >
-      <DialogContent
-        className="overflow-y-scroll max-h-screen"
-      // className="lg:max-w-screen-lg overflow-y-scroll max-h-screen"
-      >
-        <DialogHeader>
-          <DialogTitle>Add a channel</DialogTitle>
-        </DialogHeader>
-        <DialogDescription>
-          {JSON.stringify(content, null, 2)}
-        </DialogDescription>
-
-        {/* <Form {...form}>
-          <form
-            onSubmit={form.handleSubmit(onSubmit)}
-            className="mt-4 space-y-4"
-          >
-            <FormField
-              control={form.control}
-              name="title"
-              render={({ field }) => (
-                <FormItem>
-                  <FormControl>
-                    <Input
-                      disabled={isSubmitting}
-                      placeholder="e.g. 'Advanced Web Development'"
-                      className="bg-white"
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
-            <div className="flex items-center gap-x-2">
-              <Button
-                disabled={isSubmitting || !isValid}
-                type="submit"
-              >
-                Save
-              </Button>
-            </div>
-          </form>
-        </Form> */}
-
-        {/* <form 
-        onSubmit={handleSubmit} className="space-y-4">
-          <Input
-            value={name}
-            disabled={isPending}
-            onChange={handleChange}
-            required
-            autoFocus
-            minLength={3}
-            maxLength={80}
-            placeholder="e.g. 'plan-budget'"
-          />
-          <div className="flex justify-end">
-            <Button disabled={false}>
-              Create
-            </Button>
-          </div>
-        </form> */}
-
-      </DialogContent>
-    </Dialog>
+    <div>RiCardModal</div>
   )
 }
+
+
+//    {/*
+//    // <Dialog
+//    //   open={open}
+//    //   onOpenChange={handleClose}
+//    // >
+//    //   <DialogContent
+//    //     className="overflow-y-scroll max-h-screen"
+//    //   // className="lg:max-w-screen-lg overflow-y-scroll max-h-screen"
+//    //   >
+//    //     <DialogHeader>
+//    //       <DialogTitle>Add a channel</DialogTitle>
+//    //     </DialogHeader>
+//    //     <DialogDescription>
+//    //       {JSON.stringify(content, null, 2)}
+//    //     </DialogDescription>
+// */}
+//  {/* <Form {...form}>
+//          <form
+//            onSubmit={form.handleSubmit(onSubmit)}
+//            className="mt-4 space-y-4"
+//          >
+//            <FormField
+//              control={form.control}
+//              name="title"
+//              render={({ field }) => (
+//                <FormItem>
+//                  <FormControl>
+//                    <Input
+//                      disabled={isSubmitting}
+//                      placeholder="e.g. 'Advanced Web Development'"
+//                      className="bg-white"
+//                      {...field}
+//                    />
+//                  </FormControl>
+//                  <FormMessage />
+//                </FormItem>
+//              )}
+//            />
+//
+//            <div className="flex items-center gap-x-2">
+//              <Button
+//                disabled={isSubmitting || !isValid}
+//                type="submit"
+//              >
+//                Save
+//              </Button>
+//            </div>
+//          </form>
+//        </Form> */}
+//
+//  {/* <form
+//        onSubmit={handleSubmit} className="space-y-4">
+//          <Input
+//            value={name}
+//            disabled={isPending}
+//            onChange={handleChange}
+//            required
+//            autoFocus
+//            minLength={3}
+//            maxLength={80}
+//            placeholder="e.g. 'plan-budget'"
+//          />
+//          <div className="flex justify-end">
+//            <Button disabled={false}>
+//              Create
+//            </Button>
+//          </div>
+//        </form> */}
+//
+//  {/* </DialogContent>
+//    </Dialog> */}
+//

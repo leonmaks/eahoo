@@ -18,21 +18,22 @@ export default async function TasksLayout({
 }: TasksLayoutProps) {
   const func__ = "TasksLayout"
 
-  const { wspId, projectId } = await params
+  // const { wspId, projectId } = await params
 
-  console.log(func__, { wspId, projectId })
+  console.log(func__, "000")
+  // console.log(func__, { wspId, projectId })
 
   return (
-    <>
-      <CreateWspModal />
+    <div>
+      {/* <CreateWspModal /> */}
       {/* <TasksCtxProvider> */}
-      <TasksPanels
+      {/* <TasksPanels
         wspId={wspId}
         projectId={projectId}
-      >
-        {children}
-      </TasksPanels>
+      > */}
+      {children}
+      {/* </TasksPanels> */}
       {/* </TasksCtxProvider> */}
-    </>
+    </div>
   )
 }

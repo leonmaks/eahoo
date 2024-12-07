@@ -14,7 +14,7 @@ export const ScrollablePanel = ({
 
   <div
     className={cn(
-      "invisible h-full overflow-y-auto overflow-x-hidden p-0.5 hover:visible",
+      "invisible w-full h-full overflow-y-auto overflow-x-auto p-0.5 hover:visible",
       classNames)}
   >
 

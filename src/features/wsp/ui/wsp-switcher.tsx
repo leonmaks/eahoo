@@ -1,4 +1,4 @@
-import { SidebarSectionHeader } from "@/shared"
+// import { SidebarSectionHeader } from "@/shared"
 
 import {
   findWspsByMember,
@@ -32,10 +32,10 @@ export const WspSwitcher = async ({
 
   return (
     <div className="flex flex-col gap-y-2">
-      <SidebarSectionHeader
+      {/* <SidebarSectionHeader
         title={"Workspaces"}
         actionButton={WspModalButton}
-      />
+      /> */}
       {/* <div className="flex items-center justify-between">
         <p className="text-xs uppercase text-neutral-500">Workspaces</p>
         <WspModalButton />

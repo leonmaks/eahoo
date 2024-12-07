@@ -1,4 +1,4 @@
-import { CardWrapper } from "@/shared"
+import { CardWrapper } from "@/shared/ui"
 
 import { CreateWspForm } from "@/features"
 
@@ -7,7 +7,7 @@ export default async function NewWspPage() {
   return (
     <div className="w-full">
       <CardWrapper
-        cardTitle="Create New Workspace"
+        title="Create New Workspace"
       >
         <CreateWspForm />
       </CardWrapper>

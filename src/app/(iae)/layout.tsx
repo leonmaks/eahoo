@@ -24,7 +24,6 @@ export default async function IaeLayout({
 
         <div className="flex h-[calc(100vh-5rem)]">
           <IaeSidebar className="w-16 border-r bg-gray-50 shrink-0" />
-
           {children}
         </div>
 

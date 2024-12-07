@@ -16,7 +16,7 @@ import { ImageIcon } from "lucide-react"
 
 import { Wsp } from "@prisma/client"
 
-import { DottedSeparator, TASKS_HOME } from "@/shared"
+import { TASKS_HOME } from "@/shared"
 
 import { cn } from "@/shared/shadcn-ui/utils"
 import { Input } from "@/shared/shadcn-ui/input"
@@ -40,6 +40,7 @@ import {
   CreateWspSchemaType
 } from "../schema"
 import { createWspFormAction } from "../sa"
+import { DottedSeparator } from "@/shared/ui"
 // import { divide } from "lodash-es"
 
 type CreateWspFormProps = {
@@ -74,20 +75,20 @@ export const CreateWspForm = ({
     { fieldValues: defaultValues }
   )
 
-  useEffect(() => {
+  // useEffect(() => {
 
-    if (state.success) {
-      toast.success(`Workspace '${state.fieldValues?.name || "?"}' created`)
-      form.reset()
+  //   if (state.success) {
+  //     toast.success(`Workspace '${state.fieldValues?.name || "?"}' created`)
+  //     form.reset()
 
-      const wsp = state.fieldValues as Wsp
-      router.push(`${TASKS_HOME}/wsp/${wsp.id}`)
-    }
-    //   //   console.log(func__, "State0", JSON.stringify(state, null, 2))
+  //     const wsp = state.fieldValues as Wsp
+  //     router.push(`${TASKS_HOME}/wsp/${wsp.id}`)
+  //   }
+  //   //   //   console.log(func__, "State0", JSON.stringify(state, null, 2))
 
-    //   //   toastFormMessage(state)
+  //   //   //   toastFormMessage(state)
 
-  }, [state])
+  // }, [state])
 
   const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
     const func__ = "handleImageChange"
@@ -125,8 +126,8 @@ export const CreateWspForm = ({
                   />
                 </FormControl>
 
-                {state?.fieldErrors?.name &&
-                  <FormMessage>{state?.fieldErrors?.name}</FormMessage>}
+                {/* {state?.fieldErrors?.name &&
+                  <FormMessage>{state?.fieldErrors?.name}</FormMessage>} */}
               </FormItem>
             )}
           />
@@ -197,8 +198,8 @@ export const CreateWspForm = ({
             )}
           />
 
-          {state?.formErrors &&
-            <FormMessage>{state.formErrors}</FormMessage>}
+          {/* {state?.formErrors &&
+            <FormMessage>{state.formErrors}</FormMessage>} */}
         </div>
 
         <DottedSeparator className="py-7" />
